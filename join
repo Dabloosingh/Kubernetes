@@ -1,0 +1,4 @@
+kubeadm join 172.31.59.148:6443 --token g8h75v.gogoiqplp56ciuu5 \
+        --discovery-token-ca-cert-hash sha256:80082c6391c1a1e24a7279ee30740f3a8eff698a64883bb2d532706f17ae30bc
+
+

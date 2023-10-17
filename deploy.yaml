@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+  labels:
+     app: nginx
+spec:
+  replicas: 5
+  selector:
+     matchLabels:
+        app: nginx
+  template:
+     metadata:
+      labels:
+        app: nginx
+     spec:
+       containers:
+         - name: raj
+           image: httpd:latest
+           ports:
+             - containerPort: 80
+
+       tolerations:
+           - key: "type"
+             operator: "Equal"
+             value: "paper"
+             effect: "NoSchedule"
+             
+
+

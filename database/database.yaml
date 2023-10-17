@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydb1
+  namespace: mywebsite
+  
+  
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+        app: myweb
+  template:
+     metadata:
+       name: mypod
+       labels:
+        app: myweb
+     spec:
+       containers:
+         - name: mycontainer
+           image: mysql
+           envFrom:
+             - configMapRef:
+                   name: app-db
+         
+
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+   name: db-svc
+   namespace: mywebsite
+
+spec:
+  ports:
+    - port: 3306
+      protocol: TCP
+      targetPort: 3306
+  selector:
+     app: myweb

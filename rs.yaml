@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+   name: myrs
+
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+       app: nginx
+       love: coffee
+  template:
+    metadata:
+        name: my-pod
+        labels:
+          name: web
+          app: nginx
+          love: coffee
+    spec:
+        containers:
+            - name: container1
+              image: httpd:latest
+              ports: 
+               - containerPort: 80     
